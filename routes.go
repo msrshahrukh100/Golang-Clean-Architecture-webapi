@@ -3,9 +3,8 @@ package main
 import (
 	"encoding/json"
 	"net/http"
-	"log"
-	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/repository"
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/entity"
+	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/repository"
 	"math/rand"
 )
 
@@ -43,7 +42,7 @@ func addPost(resp http.ResponseWriter, req *http.Request) {
 	}
 
 	post.Id = rand.Int63()
-	repo.save(&post)
+	repo.Save(&post)
 	resp.WriteHeader(http.StatusOK)
 	json.NewEncoder(resp).Encode(post)
 

@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"log"
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/entity"
 	"cloud.google.com/go/firestore"
 )
@@ -13,8 +14,8 @@ const (
 
 
 type PostRepository interface {
-	Save(post *entity.Post) (*entity.Post, err)
-	FindAll() ([]entity.Post, err)
+	Save(post *entity.Post) (*entity.Post, error)
+	FindAll() ([]entity.Post, error)
 }
 
 
@@ -25,7 +26,7 @@ func NewPostRepository() PostRepository {
 }
 
 
-func (*repo) Save(post *entity.Post) (*entity.Post, err) {
+func (*repo) Save(post *entity.Post) (*entity.Post, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, projectId)
 	if err != nil {
@@ -35,13 +36,9 @@ func (*repo) Save(post *entity.Post) (*entity.Post, err) {
 
 	defer client.Close()
 
-	_, _, err1 := client.Collection(collectionName).Add(ctx, map[string]interface{}{
-		"ID": post.Id
-		"Title": post.Title
-		"Text": post.Text
-	})
+	_, _, err1 := client.Collection(collectionName).Add(ctx, map[string]interface{}{"ID": post.Id,"Title": post.Title,"Text": post.Text})
 
-	if err != nil {
+	if err1 != nil {
 		log.Fatalf("Failed adding new post : %v", err)
 		return nil, err
 	}
@@ -49,7 +46,7 @@ func (*repo) Save(post *entity.Post) (*entity.Post, err) {
 	return post, nil
 }
 
-func (*repo) FindAll() ([]entity.Post, err) {
+func (*repo) FindAll() ([]entity.Post, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, projectId)
 	if err != nil {
@@ -70,9 +67,9 @@ func (*repo) FindAll() ([]entity.Post, err) {
 			return nil, err
 		}
 		post := entity.Post{
-			Id: doc.Data()["ID"](int64),
-			Title: doc.Data()["Title"](string),
-			Text: doc.Data()["Text"](string),
+			Id: doc.Data()["ID"].(int64),
+			Title: doc.Data()["Title"].(string),
+			Text: doc.Data()["Text"].(string),
 		}
 		posts = append(posts, post)
 	}
