@@ -1,21 +1,23 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/controller"
 )
 
 func main() {
 	router := mux.NewRouter()
 	const port string = ":8000"
-	router.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request){
+	router.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(resp, "Hello world...")
 	})
 
-	router.HandleFunc("/posts", getPosts).Methods("GET")
-	router.HandleFunc("/posts", addPost).Methods("POST")
+	router.HandleFunc("/posts", controller.GetPosts).Methods("GET")
+	router.HandleFunc("/posts", controller.AddPost).Methods("POST")
 
 	log.Println("Server listening on port ", port)
 	log.Fatalln(http.ListenAndServe(port, router))
