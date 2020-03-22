@@ -24,7 +24,7 @@ var (
 )
 
 // NewPostController ..
-func NewPostController(ps service.Service) Controller {
+func NewPostController(ps service.Service) *PostController {
 	postService = ps
 	return &PostController{}
 }
