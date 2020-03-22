@@ -6,11 +6,15 @@ import (
 	"net/http"
 
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/controller"
+	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/repository"
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/router"
+	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/service"
 )
 
 var (
-	postController controller.PostController = controller.NewPostController()
+	repo           repository.PostRepository = repository.NewFirestoreRepository()
+	postService    service.PostService       = service.NewPostService(repo)
+	postController controller.PostController = controller.NewPostController(postService)
 )
 
 func main() {

@@ -18,14 +18,15 @@ type PostController interface {
 	AddPost(resp http.ResponseWriter, req *http.Request)
 }
 
+var (
+	postService service.PostService
+)
+
 // NewPostController ..
-func NewPostController() PostController {
+func NewPostController(ps service.PostService) PostController {
+	postService = ps
 	return &postController{}
 }
-
-var (
-	postService service.PostService = service.NewPostService()
-)
 
 // GetPosts ..
 func (*postController) GetPosts(resp http.ResponseWriter, req *http.Request) {
