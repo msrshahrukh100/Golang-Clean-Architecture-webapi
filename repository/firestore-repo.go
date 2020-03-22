@@ -14,14 +14,15 @@ const (
 	collectionName string = "posts"
 )
 
-type repo struct{}
+// PostRepository ..
+type PostRepository struct{}
 
 // NewFirestoreRepository sdf
-func NewFirestoreRepository() PostRepository {
-	return &repo{}
+func NewFirestoreRepository() Repository {
+	return &PostRepository{}
 }
 
-func (*repo) Save(post *entity.Post) (*entity.Post, error) {
+func (*PostRepository) Save(post *entity.Post) (*entity.Post, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, projectID)
 	if err != nil {
@@ -41,7 +42,7 @@ func (*repo) Save(post *entity.Post) (*entity.Post, error) {
 	return post, nil
 }
 
-func (*repo) FindAll() ([]entity.Post, error) {
+func (*PostRepository) FindAll() ([]entity.Post, error) {
 	ctx := context.Background()
 	client, err := firestore.NewClient(ctx, projectID)
 	if err != nil {

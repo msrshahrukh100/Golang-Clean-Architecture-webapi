@@ -32,6 +32,18 @@
   version = "v0.4.0"
 
 [[projects]]
+  name = "github.com/google/subcommands"
+  packages = ["."]
+  revision = "24aea2b9b9c12400919203843c92ef808c7ad560"
+  version = "1.2.0"
+
+[[projects]]
+  name = "github.com/google/wire"
+  packages = ["cmd/wire","internal/wire"]
+  revision = "578b29ef42c1970b9853962dd1c4308fd7eb5387"
+  version = "v0.4.0"
+
+[[projects]]
   name = "github.com/googleapis/gax-go"
   packages = ["v2"]
   revision = "bd5b16380fd03dc758d11cef74ba2e3bc8b0e8c2"
@@ -48,6 +60,12 @@
   packages = [".","formatter","parser"]
   revision = "cc1f095d5cc5eca2844f5c5ea7bb37f6b9bf6cac"
   version = "v0.9.1"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
 
 [[projects]]
   name = "go.opencensus.io"
@@ -136,6 +154,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4cf7a1cc2350745e20287bdedce448ff03b35204943753eea68263db851d85cd"
+  inputs-digest = "4de43e1606297364aa9c3d97e7960ab8cab2bbcaeef35b862969d84c7ef195f5"
   solver-name = "gps-cdcl"
   solver-version = 1

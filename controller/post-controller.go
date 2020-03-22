@@ -10,26 +10,27 @@ import (
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/service"
 )
 
-type postController struct{}
-
 // PostController ...
-type PostController interface {
+type PostController struct{}
+
+// Controller ...
+type Controller interface {
 	GetPosts(resp http.ResponseWriter, req *http.Request)
 	AddPost(resp http.ResponseWriter, req *http.Request)
 }
 
 var (
-	postService service.PostService
+	postService service.Service
 )
 
 // NewPostController ..
-func NewPostController(ps service.PostService) PostController {
+func NewPostController(ps service.Service) Controller {
 	postService = ps
-	return &postController{}
+	return &PostController{}
 }
 
 // GetPosts ..
-func (*postController) GetPosts(resp http.ResponseWriter, req *http.Request) {
+func (*PostController) GetPosts(resp http.ResponseWriter, req *http.Request) {
 	resp.Header().Set("Content-type", "application/json")
 
 	posts, err := postService.FindAll()
@@ -45,7 +46,7 @@ func (*postController) GetPosts(resp http.ResponseWriter, req *http.Request) {
 }
 
 // AddPost ..
-func (*postController) AddPost(resp http.ResponseWriter, req *http.Request) {
+func (*PostController) AddPost(resp http.ResponseWriter, req *http.Request) {
 	resp.Header().Set("Content-type", "application/json")
 
 	var post entity.Post

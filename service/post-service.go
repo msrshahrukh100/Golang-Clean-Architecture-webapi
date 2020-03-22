@@ -8,27 +8,28 @@ import (
 	"github.com/msrshahrukh100/Golang-Clean-Architecture-webapi/repository"
 )
 
-// PostService sdf
-type PostService interface {
+// Service sdf
+type Service interface {
 	Validate(post *entity.Post) error
 	FindAll() ([]entity.Post, error)
 	Save(post *entity.Post) (*entity.Post, error)
 }
 
-type service struct{}
+// PostService ..
+type PostService struct{}
 
 var (
-	repo repository.PostRepository
+	repo repository.Repository
 )
 
 // NewPostService sdf
-func NewPostService(r repository.PostRepository) PostService {
+func NewPostService(r repository.Repository) Service {
 	repo = r
-	return &service{}
+	return &PostService{}
 }
 
-// Validate
-func (*service) Validate(post *entity.Post) error {
+// Validate ..
+func (*PostService) Validate(post *entity.Post) error {
 	if post == nil {
 		return errors.New("Post is nil")
 	}
@@ -39,13 +40,13 @@ func (*service) Validate(post *entity.Post) error {
 	return nil
 }
 
-// FindAll
-func (*service) FindAll() ([]entity.Post, error) {
+// FindAll ..
+func (*PostService) FindAll() ([]entity.Post, error) {
 	return repo.FindAll()
 }
 
-// Save
-func (*service) Save(post *entity.Post) (*entity.Post, error) {
+// Save ..
+func (*PostService) Save(post *entity.Post) (*entity.Post, error) {
 	post.Id = rand.Int63()
 	post, err := repo.Save(post)
 	if err != nil {
