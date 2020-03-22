@@ -15,18 +15,18 @@ var (
 	repo           repository.PostRepository = repository.NewFirestoreRepository()
 	postService    service.PostService       = service.NewPostService(repo)
 	postController controller.PostController = controller.NewPostController(postService)
+	httpRouter     router.Router             = router.NewMuxRouter()
 )
 
 func main() {
-	router := router.NewMuxRouter()
 	const port string = ":8000"
-	router.GET("/", func(resp http.ResponseWriter, req *http.Request) {
+	httpRouter.GET("/", func(resp http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(resp, "Hello world...")
 	})
 
-	router.GET("/posts", postController.GetPosts)
-	router.POST("/posts", postController.AddPost)
+	httpRouter.GET("/posts", postController.GetPosts)
+	httpRouter.POST("/posts", postController.AddPost)
 
 	log.Println("Server listening on port ", port)
-	router.SERVE(port)
+	httpRouter.SERVE(port)
 }
