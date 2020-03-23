@@ -14,6 +14,12 @@
   version = "v0.3.1"
 
 [[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
   branch = "master"
   name = "github.com/golang/groupcache"
   packages = ["lru"]
@@ -32,14 +38,8 @@
   version = "v0.4.0"
 
 [[projects]]
-  name = "github.com/google/subcommands"
-  packages = ["."]
-  revision = "24aea2b9b9c12400919203843c92ef808c7ad560"
-  version = "1.2.0"
-
-[[projects]]
   name = "github.com/google/wire"
-  packages = ["cmd/wire","internal/wire"]
+  packages = ["."]
   revision = "578b29ef42c1970b9853962dd1c4308fd7eb5387"
   version = "v0.4.0"
 
@@ -66,6 +66,18 @@
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/stretchr/objx"
+  packages = ["."]
+  revision = "ea4fe68685ee0d3cee7032121851b57e7494e8ea"
+  version = "v0.2.0"
+
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert","mock"]
+  revision = "3ebf1ddaeb260c4b1ae502a01c7844fa8c1fa0e9"
+  version = "v1.5.1"
 
 [[projects]]
   name = "go.opencensus.io"
@@ -146,6 +158,12 @@
   version = "v1.28.0"
 
 [[projects]]
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "53403b58ad1b561927d19068c655246f2db79d48"
+  version = "v2.2.8"
+
+[[projects]]
   name = "honnef.co/go/tools"
   packages = ["arg","cmd/staticcheck","code","config","deprecated","edit","facts","functions","go/types/typeutil","internal/cache","internal/passes/buildir","internal/renameio","internal/robustio","internal/sharedcheck","ir","ir/irutil","lint","lint/lintdsl","lint/lintutil","lint/lintutil/format","loader","pattern","printf","report","simple","staticcheck","stylecheck","unused","version"]
   revision = "508b5eb18ee2f667ce06235ed383647038e2afc5"
@@ -154,6 +172,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4de43e1606297364aa9c3d97e7960ab8cab2bbcaeef35b862969d84c7ef195f5"
+  inputs-digest = "f469dfb1cb911a23cb5e8a4d3d65fc71b5175848696b35d4531b918c36b5cd17"
   solver-name = "gps-cdcl"
   solver-version = 1
